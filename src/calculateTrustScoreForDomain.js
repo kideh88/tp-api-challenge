@@ -51,13 +51,19 @@ class TrustScore {
     for (index; index < totalReviews; index += 1) {
       let reviewStars = this.business.reviews[index].stars;
       let reviewAge = TrustScore.getMonthsSinceReviewDate(this.business.reviews[index].createdAt);
+
+      // The ageModifier, ageScore and ratingScore form a multipler for half of the trustscore.
       let ageModifier = (reviewAge >= this.MAX_REVIEW_AGE ? 0 : (1 - (reviewAge / this.MAX_REVIEW_AGE)));
       let ageScore = (reviewStars / (reviewAge * 2)) / this.MAX_REVIEW_STARS;
       let ratingScore = ((reviewStars / this.MAX_REVIEW_STARS) + ageModifier) +  ageScore;
       ratingScore = (ratingScore > 2 ? 2 : ratingScore);
+
+      // Very old reviews' stars will be reduced slightly.
       if (reviewAge > this.MAX_REVIEW_AGE) {
         reviewStars = reviewStars * (this.MAX_REVIEW_AGE / reviewAge);
       }
+
+      // One half of the score can reach 5 stars while the other will be modified based on the calculated ratingScore
       totalTrustScore += reviewStars + (reviewStars * ratingScore) / 2;
     }
     return Math.round((totalTrustScore / totalReviews) * 10 ) / 10;
