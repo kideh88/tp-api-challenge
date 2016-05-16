@@ -1,0 +1,19 @@
+{
+  "name": "tp-api-challenge",
+  "version": "0.1.0",
+  "description": "Class to calculate the TrustScore",
+  "scripts": {
+  },
+  "repository": {
+	"type": "git",
+	"url": "git+https://github.com/kideh88/tp-api-challenge.git"
+  },
+  "keywords": [],
+  "author": "Kim Dehmlow",
+  "license": "ISC",
+  "bugs": {
+	"url": "https://github.com/kideh88/tp-api-challenge/issues"
+  },
+  "homepage": "https://github.com/kideh88/tp-api-challenge#readme",
+  "devDependencies": {}
+}
